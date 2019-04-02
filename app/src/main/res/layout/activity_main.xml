@@ -7,6 +7,26 @@
     android:background="@drawable/background_color"
     tools:context=".CameraFunction">
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="441dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="441dp" />
+
     <LinearLayout
         android:id="@+id/landingPage"
         android:layout_width="395dp"
