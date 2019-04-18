@@ -11,21 +11,25 @@
         android:id="@+id/button4"
         android:layout_width="126dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginBottom="240dp"
+        android:background="@drawable/round_button"
+        android:text="Gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="441dp" />
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="126dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginBottom="240dp"
+        android:background="@drawable/round_button"
+        android:text="Camera"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="441dp" />
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/landingPage"
