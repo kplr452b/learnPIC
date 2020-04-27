@@ -48,7 +48,7 @@ import java.util.Locale;
 
 
 public class VisionActivity extends AppCompatActivity {
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyABY0OYcJ01fVdXSCOdRWzz8W6OYyLBrug";
+    private static final String CLOUD_VISION_API_KEY = BuildConfig.VISION_KEY;
     static final int REQUEST_GALLERY_IMAGE = 100;
     private static final int MAX_DIMENSION = 1200;
 
@@ -509,7 +509,7 @@ public class VisionActivity extends AppCompatActivity {
         private ArrayList<String> translate(ArrayList<String> arr, String tar) throws IOException {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            String key = "AIzaSyBJhNkKU0locsPyiUufITjwJC55h-jOn5c";
+            String key = BuildConfig.TRANS_KEY;
             // Set up the HTTP transport and JSON factory
             HttpTransport httpTransport = new NetHttpTransport();
             JsonFactory jsonFactory = AndroidJsonFactory.getDefaultInstance();

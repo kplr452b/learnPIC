@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -10,6 +14,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        buildConfigField("String", "VISION_KEY", apikeyProperties['VISION_KEY'])
+        buildConfigField("String", "TRANS_KEY", apikeyProperties['TRANS_KEY'])
     }
     buildTypes {
         release {
