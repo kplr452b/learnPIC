@@ -32,8 +32,6 @@
         </provider>
 
         <activity android:name=".Camira" />
-        <activity android:name=".CameraFunction" />
-        <activity android:name=".CameraActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

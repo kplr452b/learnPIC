@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -24,7 +23,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,62 +34,28 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
-//import com.google.api.services.vision.v1.Vision;
-import com.google.api.client.json.GenericJson;
-//import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.translate.Translate;
 import com.google.api.services.translate.model.TranslationsListResponse;
 import com.google.api.services.vision.v1.model.*;
 import com.google.api.services.vision.v1.*;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.services.translate.Translate;
-import com.google.api.services.translate.model.TranslationsListResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import java.io.ByteArrayOutputStream;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 
 
 public class VisionActivity extends AppCompatActivity {
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyDMGa7sbDrjFYtgCFG-CSzlDueXcFGmYy8";
-    public static final String FILE_NAME = "~/picture.jpg";
+    private static final String CLOUD_VISION_API_KEY = "AIzaSyABY0OYcJ01fVdXSCOdRWzz8W6OYyLBrug";
     static final int REQUEST_GALLERY_IMAGE = 100;
-    static final int REQUEST_PERMISSIONS = 13;
-    static final int REQUEST_CODE_PICK_ACCOUNT = 101;
-    static final int REQUEST_ACCOUNT_AUTHORIZATION = 102;
-
-    private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
-    private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
-    private static final int MAX_LABEL_RESULTS = 10;
     private static final int MAX_DIMENSION = 1200;
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String LANGUAGE = "ru";
-    private static final int GALLERY_PERMISSIONS_REQUEST = 0;
-    private static final int GALLERY_IMAGE_REQUEST = 1;
-    public static final int CAMERA_PERMISSIONS_REQUEST = 2;
-    public static final int CAMERA_IMAGE_REQUEST = 3;
 
-
-    private TextView textResults;
     private TextView labelResults;
-    private TextView localResults;
+
     private ImageView img;
 
     public String choice = "";
@@ -106,8 +70,6 @@ public class VisionActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         choice = i.getStringExtra("LANG");
-
-
 
         switch(choice){
             case "Afrikaans":
@@ -314,18 +276,11 @@ public class VisionActivity extends AppCompatActivity {
             callCloudVision(bitMap);
             img.setImageBitmap(bitMap);
         }
-        //textResults = findViewById(R.id.tv_texts_results);
-        //localResults = findViewById(R.id.tv_local_results);
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ActivityCompat.requestPermissions(VisionActivity.this,
-//                        new String[]{Manifest.permission.GET_ACCOUNTS},
-//                        REQUEST_PERMISSIONS);
-                //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     checkPermissions();
-                //}
             }
         });
     }
@@ -360,16 +315,6 @@ public class VisionActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select an image"),
                 REQUEST_GALLERY_IMAGE);
     }
-
-
-//    private void launchCloudVision(){
-//        String FILENAME = "picture.jpg";
-//        String PATH = "drawable/"+ FILENAME;
-//        File f = new File(PATH);
-//        Uri uri = Uri.fromFile(f);
-//        Log.e(TAG,  uri.toString());
-//        uploadImage(uri);
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -470,10 +415,7 @@ public class VisionActivity extends AppCompatActivity {
             return null;
            }
            protected void onPostExecute(BatchAnnotateImagesResponse response) {
-               //textResults.setText(getDetectedTexts(response));
                labelResults.setText(getDetectedLabels(response));
-               //localResults.setText(getDetectedLocals(response));
-
            }
        }.execute();
 
@@ -489,9 +431,6 @@ public class VisionActivity extends AppCompatActivity {
         ArrayList<String> words = new ArrayList<>();
         if (labels != null) {
             for (EntityAnnotation label : labels) {
-//                message.append(String.format(Locale.getDefault(), "%.3f: %s",
-//                        label.getScore(), label.getDescription()));
-//                message.append("\n");
                 words.add(label.getDescription());
             }
         } else {
@@ -525,64 +464,12 @@ public class VisionActivity extends AppCompatActivity {
         return message.toString();
     }
 
-    private String getDetectedLocals(BatchAnnotateImagesResponse response){
-        StringBuilder message = new StringBuilder("");
-        if(response ==  null){
-            return ("nothing\n");
-        }
-        double[] x_indices = new double[4];
-        double[] y_indices = new double[4];
-        List<LocalizedObjectAnnotation> locals = response.getResponses().get(0).getLocalizedObjectAnnotations();
-        Log.e(TAG, locals.toString());
-        if (locals != null){
-            for (LocalizedObjectAnnotation label : locals) {
-
-
-                Log.e(TAG, label.toString());
-                message.append(String.format(Locale.getDefault(), "%.3f: %s",
-                        label.getScore(), label.getName()));
-                message.append("Normalized Vertices:\n");
-
-                Iterator<NormalizedVertex> l = label.getBoundingPoly().getNormalizedVertices().iterator();
-                int index = 0;
-                while (l.hasNext()) {
-                    NormalizedVertex vertex = l.next();
-                    x_indices[index] = (double) vertex.getX();
-                    y_indices[index] = (double) vertex.getY();
-                    index++;
-                    message.append(String.format(Locale.getDefault(), " - (%s, %s)\n", vertex.getX(), vertex.getY()));
-                }
-                message.append(String.format(Locale.getDefault(), "Center: (%s, %s)\n", find_average(x_indices), find_average(y_indices)));
-
-            }
-        }
-
-        return message.toString();
-    }
-
     private double find_average(double[] a){
         double sum = 0.0;
         for(int i = 0; i < a.length; i++){
             sum += a[i];
         }
         return sum/4.0;
-    }
-
-    private String getDetectedTexts(BatchAnnotateImagesResponse response){
-        StringBuilder message = new StringBuilder("");
-        List<EntityAnnotation> texts = response.getResponses().get(0)
-                .getTextAnnotations();
-        if (texts != null) {
-            for (EntityAnnotation text : texts) {
-                message.append(String.format(Locale.getDefault(), "%s: %s",
-                        text.getLocale(), text.getDescription()));
-                message.append("\n");
-            }
-        } else {
-            message.append("nothing\n");
-        }
-
-        return message.toString();
     }
 
 
@@ -619,27 +506,10 @@ public class VisionActivity extends AppCompatActivity {
 
     private class Translator {
 
-        public void try_translation(){
-            try {
-                ArrayList<String> ans = new ArrayList<> ();
-                ArrayList<String> arr = new ArrayList<String>();
-                arr.add("a ;dskfa;sdkf;adsk");
-                arr.add("World");
-                arr.add("Mom");
-                String tar = "ru";
-                ans = translate(arr, tar);
-                Log.e(TAG, ans.toString());
-            }
-            catch (IOException e) {
-                Log.e(TAG, e.toString());
-            }
-
-        }
-
         private ArrayList<String> translate(ArrayList<String> arr, String tar) throws IOException {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            String key = "AIzaSyBRoIxDjqFtCcrvkwkmqE6Hd2vmQt7-8Oo";
+            String key = "AIzaSyBJhNkKU0locsPyiUufITjwJC55h-jOn5c";
             // Set up the HTTP transport and JSON factory
             HttpTransport httpTransport = new NetHttpTransport();
             JsonFactory jsonFactory = AndroidJsonFactory.getDefaultInstance();

@@ -10,28 +10,33 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/galleryButton"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="73dp"
+        android:layout_width="126dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/gallery"
+        android:background="@drawable/round_button"
         android:onClick="onClick"
         android:text="@string/galleryButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="560dp"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/round_button"
         android:onClick="onClick"
+        android:text="Camera"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
 
     <FrameLayout
         android:id="@+id/main_camera"

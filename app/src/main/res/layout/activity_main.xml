@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_color"
-    tools:context=".CameraFunction">
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="126dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:background="@drawable/round_button"
-        android:text="Gallery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.778"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="126dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:background="@drawable/round_button"
-        android:text="Camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="parent" />
+    android:background="@drawable/background_color">
 
     <LinearLayout
         android:id="@+id/landingPage"
