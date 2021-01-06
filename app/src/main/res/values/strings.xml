@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">learnPIC</string>
+    <string name="app_name">Arcus</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="title_activity_vision">VisionActivity</string>
